@@ -68,8 +68,8 @@ export default function Home() {
 
   return (
     <div>
-      <h1 className="text-sky-500" >Item List</h1>
-      <ItemForm onSubmit={editItem ? handleUpdateItem : handleAddItem} editItem={editItem} />
+      <h1>Item List</h1>
+      <ItemForm onSubmit={handleAddItem} editItem={editItem} />
       <ul>
         {items.map((item) => (
           <li key={item.id}>
