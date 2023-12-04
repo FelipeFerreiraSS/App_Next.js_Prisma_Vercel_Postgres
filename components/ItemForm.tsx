@@ -2,24 +2,24 @@ import { useState, useEffect } from 'react';
 
 interface ItemFormProps {
   onSubmit: (item: { id?: number; name: string; description: string }) => void;
-  editItem?: { id: number; name: string; description: string };
+  initialItem?: { id: number; name: string; description: string } | null;
 }
 
-export default function ItemForm({ onSubmit, editItem }: ItemFormProps) {
+export default function ItemForm({ onSubmit, initialItem }: ItemFormProps) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
   useEffect(() => {
-    if (editItem) {
-      setName(editItem.name || '');
-      setDescription(editItem.description || '');
+    if (initialItem) {
+      setName(initialItem.name || '');
+      setDescription(initialItem.description || '');
     }
-  }, [editItem]);
+  }, [initialItem]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (editItem) {
-      onSubmit({ id: editItem.id, name, description });
+    if (initialItem) {
+      onSubmit({ id: initialItem.id, name, description });
     } else {
       onSubmit({ name, description });
     }
@@ -37,7 +37,7 @@ export default function ItemForm({ onSubmit, editItem }: ItemFormProps) {
         Description:
         <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
       </label>
-      <button type="submit">{editItem ? 'Update Item' : 'Add Item'}</button>
+      <button type="submit">{initialItem ? 'Update Item' : 'Add Item'}</button>
     </form>
   );
 }

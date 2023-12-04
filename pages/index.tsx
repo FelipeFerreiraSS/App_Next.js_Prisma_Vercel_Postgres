@@ -1,5 +1,3 @@
-// pages/index.tsx
-
 import { useEffect, useState } from 'react';
 import ItemForm from '../components/ItemForm';
 
@@ -69,7 +67,7 @@ export default function Home() {
   return (
     <div>
       <h1>Item List</h1>
-      <ItemForm onSubmit={handleAddItem} editItem={editItem} />
+      <ItemForm onSubmit={handleAddItem} initialItem={editItem} />
       <ul>
         {items.map((item) => (
           <li key={item.id}>
